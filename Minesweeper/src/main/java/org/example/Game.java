@@ -34,8 +34,8 @@ public class Game{
             int col = scanner.nextInt();
 
             if (row < 0 || col < 0 ||
-                    row > Board.getInstance().getBoardSize() - 1 ||
-                    col > Board.getInstance().getBoardSize() - 1){
+                    row > board.getBoardSize() - 1 ||
+                    col > board.getBoardSize() - 1){
                         System.out.println("ERROR! Invalid input.");
                         continue;
             }
