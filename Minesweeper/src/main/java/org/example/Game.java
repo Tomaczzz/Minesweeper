@@ -25,7 +25,7 @@ public class Game{
         Scanner scanner = new Scanner(System.in);
 
         while (true){
-            printBoard();
+            board.printBoard();
 
             System.out.print("Row: ");
             int row = scanner.nextInt();
@@ -42,7 +42,7 @@ public class Game{
 
             if (board.getCell(row, col).isMine()){
                 revealAllBombs();
-                printBoard();
+                board.printBoard();
                 System.out.println("GG, you lose.");
                 Board.killInstance();
                 Game.killInstance();
@@ -53,40 +53,12 @@ public class Game{
 
             if (checkWin()){
                 revealAllBombs();
-                printBoard();
+                board.printBoard();
                 System.out.println("GG, you WIN!");
                 Board.killInstance();
                 Game.killInstance();
                 break;
             }
-        }
-    }
-
-    public void printBoard(){
-        System.out.print("    ");
-        for (int col = 0; col < board.getBoardSize(); col++){
-            System.out.print(col + " ");
-        }
-        System.out.println();
-
-        System.out.print("    ");
-        for (int col = 0; col < board.getBoardSize(); col++){
-            System.out.print("_ ");
-        }
-        System.out.println();
-
-        for (int row = 0; row < board.getBoardSize(); row++){
-            System.out.print(row + " | ");
-
-            for (int col = 0; col < board.getBoardSize(); col++){
-                if (board.getCell(row, col).isRevealed()){
-                    System.out.print(board.getCell(row, col).isMine() ? "X " :
-                            board.getCell(row, col).getCellNearbyMines() + " ");
-                }else{
-                    System.out.print("- ");
-                }
-            }
-            System.out.println();
         }
     }
 

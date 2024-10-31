@@ -73,4 +73,32 @@ public class Board{
         }
         return count;
     }
+
+    public void printBoard(){
+        System.out.print("    ");
+        for (int col = 0; col < getBoardSize(); col++){
+            System.out.print(col + " ");
+        }
+        System.out.println();
+
+        System.out.print("    ");
+        for (int col = 0; col < getBoardSize(); col++){
+            System.out.print("_ ");
+        }
+        System.out.println();
+
+        for (int row = 0; row < getBoardSize(); row++){
+            System.out.print(row + " | ");
+
+            for (int col = 0; col < getBoardSize(); col++){
+                if (getCell(row, col).isRevealed()){
+                    System.out.print(getCell(row, col).isMine() ? "X " :
+                            getCell(row, col).getCellNearbyMines() + " ");
+                }else{
+                    System.out.print("- ");
+                }
+            }
+            System.out.println();
+        }
+    }
 }

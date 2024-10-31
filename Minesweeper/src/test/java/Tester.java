@@ -25,31 +25,19 @@ class Tester{
     }
 
     @Test
-    void testWithRevealedCellsShouldReturnGameWinAsTrue(){
+    void testWithInvalidRevealedCellShouldReturnFalseReveal(){
         initializer();
-        board.getCell(0, 0).setMine(true);
-
-        game.revealCell(1, 2);
-
-        assertTrue(game.checkWin());
+        game.revealCell(-1, 0);
+        assertFalse(board.getCell(0, 0).isRevealed());
         kill();
     }
 
     @Test
-    void testWithAllRevealedCellsShouldReturnAsRevealedCells(){
+    void testWithRevealedBombShouldReturnGameWinAsFalse(){
         initializer();
-        board.getCell(0, 0).setMine(true);
-
-        game.revealCell(1, 2);
-
-        assertTrue(board.getCell(0, 1).isRevealed());
-        assertTrue(board.getCell(0, 2).isRevealed());
-        assertTrue(board.getCell(1, 0).isRevealed());
-        assertTrue(board.getCell(1, 1).isRevealed());
-        assertTrue(board.getCell(1, 2).isRevealed());
-        assertTrue(board.getCell(2, 0).isRevealed());
-        assertTrue(board.getCell(2, 1).isRevealed());
-        assertTrue(board.getCell(2, 2).isRevealed());
+        board.getCell(0,0).setMine(true);
+        game.revealCell(0,0);
+        assertFalse(game.checkWin());
         kill();
     }
 }
